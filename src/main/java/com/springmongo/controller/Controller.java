@@ -15,23 +15,25 @@ import com.springmongo.repository.RegisterRepository;
 
 @RestController
 public class Controller {
-	
+	// this is a repository instance. using this we store the values in database
 	@Autowired
 	RegisterRepository registerRepo;
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public @ResponseBody String registerUser(@RequestBody RegisterModel request) {
-		registerRepo.save(request);
+		registerRepo.save(request); // this will save one user record into database
 		return "congratulations "+ request.getFirstName() + ", your registration is successful";
 	}
 	
+	// for. example: localhost/register/firstname?firstName=vishal
 	@RequestMapping(value = "/search/firstname")
 	public @ResponseBody RegisterModel findByFirstName(@RequestParam String firstName){
 		return registerRepo.findByFirstName(firstName);
 	}
 	
+	// for. example: localhost/register/lastname?lastName=patel
 	@RequestMapping(value = "/search/lastname")
 	public @ResponseBody List<RegisterModel> findByLastName(@RequestParam String lastName){
-		return registerRepo.findByLastName(lastName);
+		return registerRepo.findByLastName(lastName); // find records by lastname and return
 	}
 }

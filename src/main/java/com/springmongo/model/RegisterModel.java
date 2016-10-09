@@ -1,10 +1,9 @@
 package com.springmongo.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "users")
+@Document(collection = "users") // name of the collection/table 
 public class RegisterModel {
 
 	@Id
@@ -12,7 +11,6 @@ public class RegisterModel {
 	private String firstName;
 	private String lastName;
 	
-	@NotEmpty
 	private String userName;
 
 	public RegisterModel() {
